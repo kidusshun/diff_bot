@@ -1,0 +1,41 @@
+controller_manager:
+  ros__parameters:
+    update_rate: 30
+    use_sim_time: true
+
+    joint_base_broadcaster:
+      type: diff_drive_controller/DiffDriveController
+
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+diff_cont:
+  parameters:
+    
+    publish_rate: 50.0
+    base_frame_id: base_link
+
+    left_wheel_names: ['left_wheel_joint']
+    right_wheel_names: ['right_wheel_joint']
+    wheel_separation: 0.35
+    wheel_radius: 0.05
+
+    cmd_vel_type: false
+    
+    command_interfaces:
+      - name: left_wheel_joint/velocity
+      - name: right_wheel_joint/velocity
+    
+    state_interfaces:
+      - name: left_wheel_joint/position
+      - name: right_wheel_joint/position
+      - name: left_wheel_joint/velocity
+      - name: right_wheel_joint/velocity
+
+joint_broad:
+  parameters:
+    state_interfaces:
+      - name: left_wheel_joint/position
+      - name: right_wheel_joint/position
+      - name: left_wheel_joint/velocity
+      - name: right_wheel_joint/velocity
